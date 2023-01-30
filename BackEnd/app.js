@@ -1,6 +1,6 @@
 const express = require('express')
 require('dotenv').config()
-
+const mongoose = require('mongoose')
 
 const postingrouters = require('./router/bloges/mybloges')
 
@@ -27,7 +27,19 @@ app.use('/api/myblogs', postingrouters)
 
 
 
-app.listen(process.env.PORT,()=>{
-    console.log("Server is running on port",process.env.PORT)
+// counting To db
+mongoose.set('strictQuery', true);
+
+mongoose.connect(process.env.MONG_URI)
+.then(()=>{
+
+    app.listen(process.env.PORT,()=>{
+        console.log("Server is running on port",process.env.PORT)
+    })
+
+}).catch((err)=>{
+    console.log(err)
 })
+
+
 
