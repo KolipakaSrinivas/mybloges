@@ -1,5 +1,7 @@
 const express = require('express')
 
+const BlogPost = require('../../Models/BlogpostModel')
+
 
 
 // inszation
@@ -21,9 +23,20 @@ router.get('/:id',(req,res)=>{
 
 
 // POST NEW BLOG
-router.post('/',(req,res)=>{
+router.post('/', async (req,res)=>{
 
-    res.json({mesg:"create new blog"})
+    const {title,body} = req.body
+
+    try{
+        const blogbost = await BlogPost.create({title,body})
+        res.status(200).json(blogbost)
+
+    }catch(err){
+        res.status(400).json(err)
+
+    }
+
+    // res.json({mesg:"create new blog"})
 
 })
 
