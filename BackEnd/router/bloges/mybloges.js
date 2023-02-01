@@ -1,6 +1,7 @@
 const express = require('express')
 
-const BlogPost = require('../../Models/BlogpostModel')
+const {createBlogpost,getAllBlogPost} = require('../../controllers/blogPostControllers')
+
 
 
 
@@ -10,9 +11,7 @@ const router = express.Router()
 
 
 // GET ALL BLOGES
-router.get('/',(req,res)=>{
-    res.json({mesg:"ALL BLOGES"})
-})
+router.get('/',getAllBlogPost)
 
 
 //  GET SINGLE BLOG
@@ -23,22 +22,7 @@ router.get('/:id',(req,res)=>{
 
 
 // POST NEW BLOG
-router.post('/', async (req,res)=>{
-
-    const {title,body} = req.body
-
-    try{
-        const blogbost = await BlogPost.create({title,body})
-        res.status(200).json(blogbost)
-
-    }catch(err){
-        res.status(400).json(err)
-
-    }
-
-    // res.json({mesg:"create new blog"})
-
-})
+router.post('/',createBlogpost)
 
 //  deleate A blog
 router.delete('/:id',(req,res)=>{
