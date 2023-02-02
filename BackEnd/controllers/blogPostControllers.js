@@ -1,4 +1,5 @@
 const BlogPost = require('../Models/BlogpostModel')
+const mongoose = require('mongoose')
 
 
 
@@ -6,7 +7,6 @@ const BlogPost = require('../Models/BlogpostModel')
 
 
 /*-------------------------------  get a all BlogPost------------------------   */
-
 const getAllBlogPost = async (req,res) => {
     try{
 
@@ -19,19 +19,37 @@ const getAllBlogPost = async (req,res) => {
 
     }
 }
+/*-------------------------------  get a all BlogPost End ------------------------   */
 
 
 
 
+/*-------------------------------  get a single BlogPost By id------------------------   */
+const getBlogPostById  = async (req,res) =>{
+
+    const {_id} = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(_id)){
+
+        return res.status(400).json({err:"no seach blogs"})
+
+    }
+
+    const   blogPost  = await BlogPost.findById(_id)
+    if(!blogPost){
+        return res.status(400).json({err:"no blog post by id"})
+    }
+
+    res.status(200).json(blogPost)
+
+
+}
+/*-------------------------------  get a single BlogPost By id End ------------------------   */
 
 
 
 
-
-
-/*-------------------------------  get a single BlogPost------------------------   */
-
-
+/*-------------------------------  create a new BlogPost------------------------   */
 const createBlogpost =  async (req,res) => {
 
     const {title,body} = req.body
@@ -46,46 +64,68 @@ const createBlogpost =  async (req,res) => {
     }
 
 }
-
-
-
-
-
-
-
-
-/*-------------------------------  create a new BlogPost------------------------   */
-
-
-
+/*-------------------------------  create a new BlogPost End ------------------------   */
 
 
 
 
 /*-------------------------------  delete a BlogPost------------------------   */
 
+const deleteBlogoPost = async (req,res) => {
+
+    const {id} = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+
+        return res.status(400).json({err:"no seach blogs"})
+    }
+
+    const   blogPost  = await BlogPost.findByIdAndDelete({_id:id})
+
+    res.status(200).json(blogPost)
 
 
-
-
-
-
-
-
-
-
-
+}
+/*-------------------------------  delete a BlogPost End ------------------------   */
 
 
 
 
 
 /*-------------------------------  updata a  BlogPost------------------------   */
+const updateBlogPost = async (req,res) => {
+
+    const {id} = req.params
+    
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+
+        return res.status(400).json({err:"no seach blogs"})
+    }
+
+    const   blogPost  = await BlogPost.findByIdAndUpdate({_id:id},{
+        ...req.body
+    })
+
+    if(!blogPost){
+        return res.status(400).json({err:"no blog post by id"})
+    }
+
+    res.status(200).json(blogPost)
+
+
+}
+/*-------------------------------  updata a  BlogPost  End  ------------------------   */
+
+
 
 
 
 
 module.exports = {
     createBlogpost,
-    getAllBlogPost
+    getAllBlogPost,
+    getBlogPostById,
+    deleteBlogoPost,
+    updateBlogPost
 }

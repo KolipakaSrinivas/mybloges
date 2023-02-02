@@ -1,11 +1,15 @@
 const express = require('express')
 
-const {createBlogpost,getAllBlogPost} = require('../../controllers/blogPostControllers')
+const {
+    createBlogpost,
+    getAllBlogPost,
+    getBlogPostById,
+    deleteBlogoPost,
+    updateBlogPost
+} = require('../../controllers/blogPostControllers')
 
 
 
-
-// inszation
 const router = express.Router()
 
 
@@ -15,25 +19,19 @@ router.get('/',getAllBlogPost)
 
 
 //  GET SINGLE BLOG
-router.get('/:id',(req,res)=>{
-
-    res.json({mesg:"SINGLE BLOGE"})
-})
+router.get('/:_id',getBlogPostById)
 
 
 // POST NEW BLOG
 router.post('/',createBlogpost)
 
-//  deleate A blog
-router.delete('/:id',(req,res)=>{
 
-    res.json({mesg:"DELEAte BLOGES"})
-})
+
+//  deleate A blog
+router.delete('/:id',deleteBlogoPost)
 
  
 //  UPDATAE blog
-router.patch('/:id',(req,res)=>{
-    res.json({mesg:"UPDATA BLOGES"})
-})
+router.patch('/:id',updateBlogPost)
 
 module.exports = router
