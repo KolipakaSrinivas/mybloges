@@ -5,7 +5,7 @@ import React, { Fragment,useEffect,useState } from 'react'
 function BlogPost() {
 
 
-const [blogPost,setblogPost] = useState(null)
+const [blogPost,setblogPost] = useState(undefined)
 
 
     useEffect(()=>{
@@ -15,7 +15,7 @@ const [blogPost,setblogPost] = useState(null)
             const url ="http://localhost:4000/api/myblogs"
 
          const  response = await fetch(url)
-         const json = await response.json()
+         const json = await  response.json()
 
          if(response.ok){
             setblogPost(json)
@@ -24,6 +24,8 @@ const [blogPost,setblogPost] = useState(null)
          }
             
         } 
+         
+        
         getBlogPost()
     },[])
 
@@ -35,8 +37,11 @@ const [blogPost,setblogPost] = useState(null)
         <Fragment>
             <div className="header">
 
+                {
+                    blogPost && blogPost.map(item=><h1 key={item._id}>{item.title}</h1>)
+                }
 
-            <h1>Home Pagkkkkkke</h1>
+
 
             </div>
         </Fragment>
