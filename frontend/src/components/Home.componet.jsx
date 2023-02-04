@@ -1,12 +1,48 @@
-import React, { Fragment } from 'react'
+import React, { Fragment,useState,useEffect } from 'react'
+
+
+
+import BlogPost from '../components/BlogPost.component'
+import BlogForm from '../components/BlogForm/BlogForm.component'
+
 
 
 function Home() {
+
+    const [blogPost,setblogPost] = useState(undefined)
+
+
+    useEffect(()=>{
+
+        const getBlogPost = async () => {
+
+            const url ="http://localhost:5173/api/myblogs"
+
+         const  response = await fetch(url)
+         const json = await response.json()
+
+         if(response.ok){
+            setblogPost(json)
+         }else{
+            console.log("Not Ok")
+         }
+            
+        } 
+         
+        
+        getBlogPost()
+    },[])
+
+
+
     return(
         <Fragment>
-
-            <h1>Home Page</h1>
-
+            <div className='home'>
+                <div className='workouts'>
+                    {blogPost && blogPost.map(post=><BlogPost key={post._id} post={post}/>)}
+                </div>
+                <BlogForm/>
+            </div>
         </Fragment>
     )
 }

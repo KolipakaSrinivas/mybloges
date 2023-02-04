@@ -1,48 +1,17 @@
-import React, { Fragment,useEffect,useState } from 'react'
-
-// import axios from 'axios'
-
-function BlogPost() {
+import React, { Fragment } from 'react'
 
 
-const [blogPost,setblogPost] = useState(undefined)
 
 
-    useEffect(()=>{
 
-        const getBlogPost = async () => {
 
-            const url ="http://localhost:4000/api/myblogs"
-
-         const  response = await fetch(url)
-         const json = await  response.json()
-
-         if(response.ok){
-            setblogPost(json)
-         }else{
-            console.log("Not Ok")
-         }
-            
-        } 
-         
-        
-        getBlogPost()
-    },[])
-
-    
-    console.log(blogPost)
-
+function BlogPost({post}) {
 
     return(
         <Fragment>
-            <div className="header">
-
-                {
-                    blogPost && blogPost.map(item=><h1 key={item._id}>{item.title}</h1>)
-                }
-
-
-
+            <div className='workout-details'>
+            <h4>{post.title}</h4>
+            <p>{post.body}</p>
             </div>
         </Fragment>
     )
