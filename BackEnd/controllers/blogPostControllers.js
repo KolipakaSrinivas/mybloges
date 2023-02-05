@@ -59,7 +59,7 @@ const createBlogpost =  async (req,res) => {
         res.status(200).json(blogbost)
 
     }catch(err){
-        res.status(400).json(err)
+        res.status(400).json({err:err})
 
     }
 

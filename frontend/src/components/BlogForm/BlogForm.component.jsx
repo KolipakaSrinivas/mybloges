@@ -12,7 +12,7 @@ function BlogForm () {
     const handsumbit = async (e) =>{
         e.preventDefault()
 
-        const url = 'http://localhost:5173/api/myblogs'
+        const url = 'http://localhost:4000/api/myblogs'
 
         const newBlog = {title,body}
         const response = await fetch(url,{

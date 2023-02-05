@@ -16,7 +16,7 @@ function Home() {
 
         const getBlogPost = async () => {
 
-            const url ="http://localhost:5173/api/myblogs"
+            const url ="http://localhost:4000/api/myblogs"
 
          const  response = await fetch(url)
          const json = await response.json()

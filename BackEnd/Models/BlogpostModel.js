@@ -11,7 +11,7 @@ const BlogoPostShema = new Schema({
     },
     body:{
         type:String,
-        required:String
+        required:true
     },
 
 },{ timestamps:true })
