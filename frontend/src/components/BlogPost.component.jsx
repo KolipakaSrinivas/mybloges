@@ -3,10 +3,8 @@ import React, { Fragment } from 'react'
 
 
 
-
-
 function BlogPost({post}) {
-
+    
     return(
         <Fragment>
             <div className='workout-details'>

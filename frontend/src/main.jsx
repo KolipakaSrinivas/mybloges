@@ -6,16 +6,16 @@ import './index.css'
 
 import {BrowserRouter} from 'react-router-dom'
 
-import { allBlogContexProvider } from './context/blog-context'
+import { WorkoutsContextProvider } from './context/blog-context'
 
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <allBlogContexProvider>
+      <WorkoutsContextProvider>
           <App />
-      </allBlogContexProvider>
+      </WorkoutsContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
 )
