@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
 
 
-import {useBlogContext} from '../../hooks/UseContextHook'
+
 function BlogForm () {
-    const {dispatch} = useBlogContext
+
 
 
     const [title,setTitle] = useState('')
@@ -32,7 +32,7 @@ function BlogForm () {
             setTitle('')
             setBody('')
             setErr('new blog submit',json)
-            dispatch({type:'CREATE_WORKOUT',payload:json})
+            window.location.reload()
 
         }
 

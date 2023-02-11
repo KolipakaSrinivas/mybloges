@@ -6,11 +6,13 @@ import BlogPost from '../components/BlogPost.component'
 import BlogForm from '../components/BlogForm/BlogForm.component'
 
 
-import {useBlogContext} from '../hooks/UseContextHook'
+
 
 function Home() {
 
-    const {workouts,dispatch}= useBlogContext()
+    const [blogposts,setBlogposts] = useState(null) 
+
+    
 
 
     useEffect(()=>{
@@ -23,7 +25,7 @@ function Home() {
          const json = await response.json()
 
          if(response.ok){
-            dispatch({type:'SET_BLOG',payload:json})
+            setBlogposts(json)
          }else{
             console.log("Not Ok")
          }
@@ -40,9 +42,9 @@ function Home() {
         <Fragment>
             <div className='home'>
                 <div className='workouts'>
-                    {workouts && workouts.map(post=><BlogPost key={post._id} post={post}/>)}
+                    {blogposts && blogposts.map(post=><BlogPost key={post._id} post={post}/>)}
                 </div>
-                <BlogForm/>
+                <BlogForm />
             </div>
         </Fragment>
     )
