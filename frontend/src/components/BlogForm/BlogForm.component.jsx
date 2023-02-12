@@ -8,7 +8,7 @@ function BlogForm () {
 
     const [title,setTitle] = useState('')
     const [body,setBody] = useState('')
-    const [err,setErr] = useState(null)
+    const [error,setError] = useState(null)
 
     const handsumbit = async (e) =>{
         e.preventDefault()
@@ -27,11 +27,12 @@ function BlogForm () {
         const json =await response.json()
 
         if(!response.ok){
-            setErr(json.err)
+            setError(json.error)
         }if(response.ok){
             setTitle('')
             setBody('')
-            setErr('new blog submit',json)
+            setError(null)
+            console.log('new form submit')
             window.location.reload()
 
         }
@@ -56,7 +57,7 @@ function BlogForm () {
                 value={body}
                 />
                 <button>add</button>
-                {err && <div className="error">{err}</div>}
+                {error && <div className="error">{error}</div>}
 
             </form>
 

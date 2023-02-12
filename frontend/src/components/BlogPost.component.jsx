@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
@@ -29,7 +30,7 @@ function BlogPost({post}) {
             <h4>{post.title}</h4>
             <p>{post.body}</p>
             <p style={{color:"blue"}}>{post.createdAt}</p>
-            <span onClick={()=>deletepost(post._id)}>Delete</span>
+            <span onClick={()=>deletepost(post._id)}><DeleteIcon/></span>
             </div>
         </Fragment>
     )

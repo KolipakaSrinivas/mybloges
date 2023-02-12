@@ -58,8 +58,8 @@ const createBlogpost =  async (req,res) => {
         const blogbost = await BlogPost.create({title,body})
         res.status(200).json(blogbost)
 
-    }catch(err){
-        res.status(400).json({err:err})
+    }catch(error){
+        res.status(400).json({error:error.message})
 
     }
 
