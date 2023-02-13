@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import DeleteIcon from '@mui/icons-material/Delete';
+import './BlogPost.css'
 
 
 
@@ -27,10 +27,10 @@ function BlogPost({post}) {
     return(
         <Fragment>
             <div className='workout-details'>
-            <h4>{post.title}</h4>
+            <h4>{post.title.toUpperCase()}</h4>
             <p>{post.body}</p>
             <p style={{color:"blue"}}>{post.createdAt}</p>
-            <span onClick={()=>deletepost(post._id)}><DeleteIcon/></span>
+            <span onClick={()=>deletepost(post._id)}><span className="material-symbols-outlined">delete</span></span>
             </div>
         </Fragment>
     )

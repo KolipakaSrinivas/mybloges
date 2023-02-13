@@ -2,7 +2,9 @@ const express = require('express')
 require('dotenv').config()
 const mongoose = require('mongoose')
 
-const postingrouters = require('./router/bloges/mybloges')
+const postingrouters = require('./router/mybloges')
+
+const userrouters = require('./controllers/UserControler')
 
 // express APP
 const app = express()
@@ -24,6 +26,8 @@ app.get('/',(req,res)=>{
 })
 
 app.use('/api/myblogs', postingrouters)
+
+app.use('/user',userrouters)
 
 
 

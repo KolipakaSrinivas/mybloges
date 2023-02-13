@@ -6,7 +6,7 @@ const {
     getBlogPostById,
     deleteBlogoPost,
     updateBlogPost
-} = require('../../controllers/blogPostControllers')
+} = require('../controllers/blogPostControllers')
 
 
 
