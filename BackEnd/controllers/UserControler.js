@@ -1,13 +1,13 @@
+const User = require('../Models/userModel')
 
-
-const loginuser = async (req,res) => {
-
-    res.json({meg:"signup"})
-
+// login a user
+const loginUser = async (req, res) => {
+  res.json({mssg: 'login user'})
 }
 
-const signupuser = (req,res) => {
-    res.json({meg:"signupm  jjjj"})
+// signup a user
+const signupUser = async (req, res) => {
+  res.json({mssg: 'signup user'})
 }
 
-module.exports  = {loginuser,signupuser} 
+module.exports = { signupUser, loginUser }

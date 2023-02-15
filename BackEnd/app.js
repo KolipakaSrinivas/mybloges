@@ -2,17 +2,19 @@ const express = require('express')
 require('dotenv').config()
 const mongoose = require('mongoose')
 
-const postingrouters = require('./router/mybloges')
 
-const userrouters = require('./controllers/UserControler')
+// controlrs functions
+const postingrouters = require('./router/mybloges')
+const userRoutes = require('./router/user')
+
 
 // express APP
 const app = express()
 
+
+
+
 app.use(express.json())
-
-
-
 app.use((req,res,next)=>{
     console.log(req.path,req.method)
     next()
@@ -25,10 +27,10 @@ app.get('/',(req,res)=>{
     res.json({"mesg":"Welcome to world"})
 })
 
+
 app.use('/api/myblogs', postingrouters)
 
-app.use('/user',userrouters)
-
+app.use('/api/user', userRoutes)
 
 
 // // counting To db
